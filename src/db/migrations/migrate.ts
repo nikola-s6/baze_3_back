@@ -1,6 +1,6 @@
 import fs from 'fs';
 import path from 'path';
-import transaction from '../db';
+import { transaction } from '../db';
 
 (async () => {
   const create = fs.readFileSync(

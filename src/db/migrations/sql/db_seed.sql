@@ -18,14 +18,14 @@ insert into "PrivredniSubjekt"("maticniBroj", pib, "nazivPrivrednosgSubjekta", s
 values (22222222,333333333, 'Moj kiosk', 'https://mojkiosk.rs/', 1);
 
 -- zaposleni 5
-insert into "Zaposleni"("imeIPrezime", email, "brojTelefona", "datumZaposlenja", "maticniBroj")
-values ('Milos Milosevic', 'milos@gmail.com', '0603829238', '2020-11-11', 11111111);
+insert into "Zaposleni"("imeIPrezime", email, sifra, "brojTelefona", "datumZaposlenja", "maticniBroj")
+values ('Milos Milosevic', 'milos@gmail.com', '3c07392c3464bfab57b10c05551210c53dad9e4badc2ecfcb0b41892a91e77f7','0603829238', '2020-11-11', 11111111);
 
-insert into "Zaposleni"("imeIPrezime", email, "brojTelefona", "datumZaposlenja", "maticniBroj")
-values ('Marko Markovic', 'marko@gmail.com', '0609784731', '2020-07-17', 11111111);
+insert into "Zaposleni"("imeIPrezime", email, sifra,"brojTelefona", "datumZaposlenja", "maticniBroj")
+values ('Marko Markovic', 'marko@gmail.com', '7b458d79dddc4f8b5221219d7bb14b18c381d5eac99649b5e8aef60a6f98f92a','0609784731', '2020-07-17', 11111111);
 
-insert into "Zaposleni"("imeIPrezime", email, "brojTelefona", "datumZaposlenja", "maticniBroj")
-values ('Nikola Stojilkovic', 'nikola@gmail.com', '069038239', '2021-02-08', 11111111);
+insert into "Zaposleni"("imeIPrezime", email, sifra,"brojTelefona", "datumZaposlenja", "maticniBroj")
+values ('Nikola Stojilkovic', 'nikola@gmail.com', '30289d6c1c4a10b579e38e386faca07f2c4a5deef7f03684d28eee87a9910a27','069038239', '2021-02-08', 11111111);
 
 -- valuta 6
 insert into "Valuta"("nazivValute", "oznakaValute")

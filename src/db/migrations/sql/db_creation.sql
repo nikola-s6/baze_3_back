@@ -44,7 +44,8 @@ create table "PrivredniSubjekt" (
 create table "Zaposleni" (
   "zaposleniId" integer generated always as identity constraint "Zaposleni_pk" primary key,
     "imeIPrezime" varchar(100),
-    "email" varchar(100),
+    "email" varchar(100) unique,
+    "sifra" varchar(64),
     "brojTelefona" varchar,
     "datumZaposlenja" date,
     "maticniBroj" bigint constraint "Zaposleni_PrivredniSubjekt_maticniBroj" references "PrivredniSubjekt"
