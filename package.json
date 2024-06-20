@@ -20,6 +20,7 @@
     "keccak256": "^1.0.6",
     "pg": "^8.11.3",
     "pg-pool": "^3.6.1",
+    "sha256": "^0.2.0",
     "ts-transformer-keys": "^0.4.4"
   },
   "devDependencies": {

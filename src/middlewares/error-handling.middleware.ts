@@ -1,8 +1,25 @@
 import { NextFunction, Request, Response } from 'express'
+import errorConstants from '../errors/error-constants'
 
 const ErrorMiddleware = (err: any, req: Request, res: Response, next: NextFunction) => {
-  const status = err.status || 500
-  const message = err.message || 'Internal server error'
+  let status = err.status
+  const message = err.message || 'Serverska greska!'
+
+  if (!status) {
+    switch (message) {
+      case errorConstants.notFound:
+        status = 404
+        break
+      case errorConstants.missingParams:
+        status = 400
+        break
+
+      default:
+        status = 500
+        break
+    }
+  }
+
   res.status(status).json({
     status,
     message

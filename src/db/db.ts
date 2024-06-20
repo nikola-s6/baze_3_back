@@ -31,7 +31,10 @@ export async function transaction<T>(t: (client: PoolClient) => Promise<T>, isSc
   }
 }
 
-export async function execute<T>(t: (client: PoolClient, data: any) => Promise<QueryResult>, data: any): Promise<T[]> {
+export async function execute<T>(
+  t: (client: PoolClient, data?: any) => Promise<QueryResult>,
+  data?: any
+): Promise<T[]> {
   return t(await pool.connect(), data)
     .then(response => {
       return parse<T>(response)
