@@ -3,9 +3,10 @@ import * as db from '../../db/db'
 import { CustomError } from '../../errors/custom.error'
 import errorConstants from '../../errors/error-constants'
 import { Zaposleni, ZaposleniSifra } from '../zaposleni/zaposleni.model'
-import { getZaposleniByEmail } from './auth.repository'
+import { getZaposleniByEmail, registerZaposleni } from './auth.repository'
 import { JWT_SECRET } from '../../utils/environments'
 import { sign } from 'jsonwebtoken'
+import { format } from 'date-fns'
 
 export async function login(email: string, password: string): Promise<{ jwt: string; zaposeni: Zaposleni }> {
   if (!email || !password) throw new Error(errorConstants.missingParams)
@@ -24,4 +25,31 @@ export async function login(email: string, password: string): Promise<{ jwt: str
   })
 
   return { jwt, zaposeni: zaposleni as Zaposleni }
+}
+
+export async function register(
+  ime: string,
+  prezime: string,
+  email: string,
+  sifra: string,
+  brojTelefona: string,
+  datumZaposlenja: string,
+  maticniBroj: number
+) {
+  if (!ime || !prezime || !email || !sifra || !brojTelefona || !datumZaposlenja || !maticniBroj) {
+    throw new Error(errorConstants.missingParams)
+  }
+
+  const imeIPrezime = `${ime.trim()} ${prezime.trim()}`
+  const hashedSifra = sha256(sifra)
+  const datumZaposlenjaString = format(new Date(datumZaposlenja), 'yyyy-MM-dd')
+
+  await db.execute(registerZaposleni, {
+    imeIPrezime,
+    email,
+    sifra: hashedSifra,
+    brojTelefona,
+    datumZaposlenja: datumZaposlenjaString,
+    maticniBroj
+  })
 }
