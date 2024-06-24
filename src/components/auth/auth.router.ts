@@ -1,5 +1,5 @@
 import { Request, Response, Router } from 'express'
-import * as authService from './auh.service'
+import * as authService from './auth.service'
 import catchAsync from '../../errors/catch-error.helper'
 
 const router = Router()
@@ -27,7 +27,7 @@ router
     catchAsync(async (req: Request, res: Response) => {
       const { ime, prezime, email, sifra, brojTelefona, datumZaposlenja, maticniBroj } = req.body
 
-      const result = await authService.register(ime, prezime, email, sifra, brojTelefona, datumZaposlenja, maticniBroj)
+      await authService.register(ime, prezime, email, sifra, brojTelefona, datumZaposlenja, maticniBroj)
 
       res.status(200).json({
         message: 'Uspesna registracija!'
