@@ -3,14 +3,16 @@ import * as db from '../../db/db'
 import { CustomError } from '../../errors/custom.error'
 import errorConstants from '../../errors/error-constants'
 import { Zaposleni, ZaposleniSifra } from '../../models/zaposleni.model'
-import { getZaposleniByEmail, registerZaposleni } from './auth.repository'
+import { registerZaposleni } from './auth.repository'
 import { JWT_SECRET } from '../../utils/environments'
 import { sign } from 'jsonwebtoken'
 import { format } from 'date-fns'
+import { getZaposleniByEmail } from '../zaposleni/zaposleni.repository'
 
 export async function login(email: string, password: string): Promise<{ jwt: string; zaposeni: Zaposleni }> {
   if (!email || !password) throw new Error(errorConstants.missingParams)
 
+  // didn't use zaposleni service because sifra is needed here
   const [zaposleni] = await db.execute<ZaposleniSifra>(getZaposleniByEmail, {
     email
   })

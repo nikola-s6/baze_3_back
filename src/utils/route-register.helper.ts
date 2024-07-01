@@ -1,7 +1,9 @@
-import { Express, Router } from 'express';
+import { Express, Router } from 'express'
+
+export const baseUrl = '/api/v1'
 
 const registerRoute = (app: Express, route: string, router: Router) => {
-  app.use(route, router);
-};
+  app.use(baseUrl + route, router)
+}
 
-export default registerRoute;
+export default registerRoute

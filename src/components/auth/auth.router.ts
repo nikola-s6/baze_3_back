@@ -1,6 +1,8 @@
 import { Request, Response, Router } from 'express'
 import * as authService from './auth.service'
 import catchAsync from '../../errors/catch-error.helper'
+import { baseUrl } from '../../utils/route-register.helper'
+import { DOMAIN } from '../../utils/environments'
 
 const router = Router()
 export default router
@@ -12,7 +14,7 @@ router
       const { email, sifra } = req.body
       const r = await authService.login(email, sifra)
 
-      res.setHeader('Set-Cookie', `jwt=${r.jwt}; HttpOnly`)
+      res.setHeader('Set-Cookie', `jwt=${r.jwt}; HttpOnly; Path=${baseUrl}; Domain=${DOMAIN}`)
 
       res.status(200).send({
         message: 'Uspesno ste se ulogovali!',
