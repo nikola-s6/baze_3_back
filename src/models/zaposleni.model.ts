@@ -1,11 +1,15 @@
-export type ZaposleniSifra = {
-  zaposleniId: number;
-  imeIPrezime: string;
-  email: string;
-  sifra: string;
-  brojTelefona: string;
-  datumZaposlenja: Date;
-  maticniBroj: bigint;
-};
+import { PrivredniSubjekt } from './privredni-subjekt.model'
 
-export type Zaposleni = Omit<ZaposleniSifra, 'sifra'>;
+export type ZaposleniSifra = {
+  id: number
+  imeIPrezime: string
+  email: string
+  sifra: string
+  brojTelefona: string
+  datumZaposlenja: Date
+  maticniBroj: number
+}
+
+export type Zaposleni = Omit<ZaposleniSifra, 'sifra'>
+
+export type ZaposleniPopulated = Omit<Zaposleni, 'maticniBroj'> & { privredniSubjekt: PrivredniSubjekt }

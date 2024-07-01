@@ -11,10 +11,10 @@ insert into "Adresa"(ulica, broj, "gradId")
 values ('Jove Ilica', '154', 1);
 
 -- privredni subjekt 4
-insert into "PrivredniSubjekt"("maticniBroj", pib, "nazivPrivrednosgSubjekta", stranica, "adresaId")
+insert into "PrivredniSubjekt"("maticniBroj", pib, "nazivPrivrednogSubjekta", stranica, "adresaId")
 values (11111111,222222222, 'Fakultet organizacionih nauka', 'https://fon.bg.ac.rs/', 1);
 
-insert into "PrivredniSubjekt"("maticniBroj", pib, "nazivPrivrednosgSubjekta", stranica, "adresaId")
+insert into "PrivredniSubjekt"("maticniBroj", pib, "nazivPrivrednogSubjekta", stranica, "adresaId")
 values (22222222,333333333, 'Moj kiosk', 'https://mojkiosk.rs/', 1);
 
 -- zaposleni 5

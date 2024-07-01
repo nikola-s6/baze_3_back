@@ -36,7 +36,7 @@ create table "Adresa"
 create table "PrivredniSubjekt" (
   "maticniBroj" bigint constraint "PrivredniSubjekt_pk" primary key,
     "pib" bigint not null unique,
-    "nazivPrivrednosgSubjekta" varchar(50),
+    "nazivPrivrednogSubjekta" varchar(50),
     "stranica" varchar(50),
     "adresaId" integer constraint "PrivredniSubjekt_Adresa_adresaId_fk" references "Adresa"
 );

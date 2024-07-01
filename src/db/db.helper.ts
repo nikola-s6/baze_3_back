@@ -2,7 +2,7 @@ import { QueryResult } from 'pg'
 
 export function parse<T>(
   queryResult: QueryResult,
-  customParser: (arr: T[], queryResult: QueryResult) => T = null
+  customParser: (arr: T[], queryResult: QueryResult) => void = null
 ): T[] {
   const parseFunction = customParser ?? defaultParser
   const arr: T[] = []

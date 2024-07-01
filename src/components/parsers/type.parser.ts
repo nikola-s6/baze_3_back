@@ -33,7 +33,7 @@ export async function setTypeParesrs() {
 
 	types.setTypeParser(priceTypeOid, val => {
 		if (!val) return val
-		return +val
+		return +Number(val.slice(1, -1)).toFixed(2)
 	})
 
 	types.setTypeParser(types.builtins.INT8, val => {
