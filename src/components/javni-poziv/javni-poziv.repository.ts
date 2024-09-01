@@ -30,7 +30,15 @@ export function getJavniPozivAll(
   }
 
   if (data.datumIzdavanjaDo) {
-    queryText += ` and (datumi)."datumZatvaranja" <= '${data.datumIzdavanjaDo}'`
+    queryText += ` and (datumi)."datumIzdavanja" <= '${data.datumIzdavanjaDo}'`
+  }
+
+  if (data.datumZatvaranjaOd) {
+    queryText += ` and (datumi)."datumZatvaranja" >= '${data.datumZatvaranjaOd}'`
+  }
+
+  if (data.datumZatvaranjaDo) {
+    queryText += ` and (datumi)."datumZatvaranja" <= '${data.datumZatvaranjaDo}'`
   }
 
   if (data.procenjenaVrednostOd) {

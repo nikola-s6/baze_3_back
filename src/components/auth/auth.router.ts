@@ -14,13 +14,15 @@ router
       const { email, sifra } = req.body
       const r = await authService.login(email, sifra)
 
-      res.setHeader('Set-Cookie', `jwt=${r.jwt}; HttpOnly; Path=${baseUrl}; Domain=${DOMAIN}`)
+      // res.setHeader('Set-Cookie', `jwt=${r.jwt}; HttpOnly; Path=${baseUrl}; Domain=${DOMAIN}`)
+      res.cookie('jwt', r.jwt, { httpOnly: true, domain: '127.0.0.1', path: baseUrl })
 
       res.status(200).send({
         message: 'Uspesno ste se ulogovali!',
         data: {
-          zaposleni: r.zaposeni
-        }
+          ...r.zaposeni
+        },
+        jwt: r.jwt
       })
     })
   )

@@ -13,3 +13,5 @@ export type ZaposleniSifra = {
 export type Zaposleni = Omit<ZaposleniSifra, 'sifra'>
 
 export type ZaposleniPopulated = Omit<Zaposleni, 'maticniBroj'> & { privredniSubjekt: PrivredniSubjekt }
+
+export type ZaposleniByEmailDTO = Zaposleni & PrivredniSubjekt

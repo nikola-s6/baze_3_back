@@ -9,6 +9,7 @@ import { setTypeParesrs } from './components/parsers/type.parser'
 import { PermissionMiddleware } from './middlewares/permission.middleware'
 import cookieParser from 'cookie-parser'
 import cors from 'cors'
+import privredniSubjektRouter from './components/privredni-subjekt/privredni-subjekt.router'
 
 const app = express()
 
@@ -20,6 +21,7 @@ app.use(PermissionMiddleware)
 
 registerRoute(app, '/auth', authRouter)
 registerRoute(app, '', javniPozivRouter)
+registerRoute(app, '', privredniSubjektRouter)
 
 app.use(ErrorMiddleware)
 
