@@ -1,6 +1,7 @@
 import { Oznaka } from './oznaka.model'
+import { Ponuda } from './ponuda.model'
 import { Datumi } from './shared/datumi.model'
-import { Zaposleni, ZaposleniPopulated } from './zaposleni.model'
+import { Zaposleni, ZaposleniPopulated, ZaposleniWithPrivredniFull } from './zaposleni.model'
 
 export type JavniPozivFilters = {
   referentniBroj?: number
@@ -25,6 +26,16 @@ export type JavniPoziv = {
   zaposleniId: string
 }
 
+type JavniPozivDetalji = {
+  opis: string
+  dodatniPodaci: string
+  dozvoljeneVarijante: boolean
+  adresaDostavljanja: string
+  podlozanProduzenju: boolean
+  obrazlozenjeProduzenja?: string
+  osnovnaDelatnost: string
+}
+
 // no need to populate valuta since it is denormalized
 export type JavniPozivPopulated = Omit<JavniPoziv, 'oznakaId' | 'zaposleniId'> & {
   zaposleni: Zaposleni
@@ -34,3 +45,7 @@ export type JavniPozivPopulated = Omit<JavniPoziv, 'oznakaId' | 'zaposleniId'> &
 export type GetAllJavniPozivDTO = Omit<JavniPozivPopulated, 'zaposleni'> & {
   zaposleni: Pick<ZaposleniPopulated, 'imeIPrezime' | 'id' | 'privredniSubjekt'>
 }
+
+export type JavniPozivDetails = Omit<GetAllJavniPozivDTO, 'zaposleni'> & {
+  zaposleni: ZaposleniWithPrivredniFull
+} & JavniPozivDetalji & { ponude?: Ponuda[] }

@@ -2,19 +2,24 @@ import { QueryResult } from 'pg'
 import { ZaposleniByEmailDTO, ZaposleniPopulated } from '../../models/zaposleni.model'
 import { parse } from '../../db/db.helper'
 import { PrivredniSubjekt } from '../../models/privredni-subjekt.model'
+import { parserPS } from './privredni-subjekt.parser'
 
 export function parserGetZaposleniByEmail(arr: ZaposleniPopulated[], queryResult: QueryResult) {
   queryResult.rows.forEach((row: ZaposleniByEmailDTO) => {
-    const zaposleni: ZaposleniPopulated = {
-      id: row.id,
-      email: row.email,
-      brojTelefona: row.brojTelefona,
-      datumZaposlenja: row.datumZaposlenja,
-      imeIPrezime: row.imeIPrezime,
-      privredniSubjekt: parse<PrivredniSubjekt>(queryResult)[0]
-    }
-    arr.push(zaposleni)
+    arr.push(getPopulatedZaposleni(row))
   })
+}
+
+export function getPopulatedZaposleni(row: ZaposleniByEmailDTO) {
+  const zaposleni: ZaposleniPopulated = {
+    id: row.id,
+    email: row.email,
+    brojTelefona: row.brojTelefona,
+    datumZaposlenja: row.datumZaposlenja,
+    imeIPrezime: row.imeIPrezime,
+    privredniSubjekt: parserPS(row)
+  }
+  return zaposleni
 }
 
 export function parserGetZaposleniByEmailWSifra(

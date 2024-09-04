@@ -60,3 +60,16 @@ export function getJavniPozivAll(
     text: queryText
   })
 }
+
+export function getJpDetails(client: PoolClient, data: { referentniBroj: number }) {
+  const text = `select * from view_javni_poziv as jp
+         left join "Zaposleni" z on jp."zaposleniId" = z."zaposleniId"
+         left join "PrivredniSubjekt" ps on ps."maticniBroj" = z."maticniBroj"
+         left join "Adresa" ad on ps."adresaId" = ad."adresaId"
+         left join "Grad" g on g."gradId" = ad."gradId"
+         left join "Drzava" dr on dr."drzavaId" = g."drzavaId"
+         where "referentniBrojJP"=${data.referentniBroj}`
+  return client.query({
+    text
+  })
+}

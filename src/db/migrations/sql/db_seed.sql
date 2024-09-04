@@ -37,7 +37,7 @@ values ('Kancelarijski materijal');
 
 -- javni poziv 8
 insert into view_javni_poziv("nazivPoziva", datumi, "procenjenaVrednost", "oznakaValute", "oznakaId", "valutaId", "zaposleniId", opis, "dodatniPodaci", "dozvoljeneVarijante", "adresaDostavljanja", "podlozanProduzenju", "obrazlozenjeProduzenja", "osnovnaDelatnost")
-values ('Nabavka kancelarijskog materijala', row('2023-12-14 11:00:00', '2023-12-28 11:00:00'), row(100000), 'proba', 1, 1, 1, 'Nabavka kancelarijskog materijala za FON', 'Nema dodatnih podataka', false, 1, false, '', 'Elektricna energija');
+values ('Nabavka kancelarijskog materijala', row('2023-12-14 11:00:00', '2023-12-28 11:00:00'), row(100000), 'proba', 1, 1, 1, 'Nabavka kancelarijskog materijala za FON', 'Nema dodatnih podataka', false, 'konkurs@fon.bg.ac.rs', false, '', 'Elektricna energija');
 
 -- kriterijum poziva 9
 insert into "KriterijumPoziva"("nazivKriterijumaPoziva", "referentniBrojJP")
