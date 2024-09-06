@@ -10,6 +10,8 @@ import { PermissionMiddleware } from './middlewares/permission.middleware'
 import cookieParser from 'cookie-parser'
 import cors from 'cors'
 import privredniSubjektRouter from './components/privredni-subjekt/privredni-subjekt.router'
+import oznakaRouter from './components/oznaka/oznaka.router'
+import valutaRouter from './components/valuta/valuta.router'
 
 const app = express()
 
@@ -20,8 +22,10 @@ app.use(cookieParser())
 app.use(PermissionMiddleware)
 
 registerRoute(app, '/auth', authRouter)
-registerRoute(app, '', javniPozivRouter)
-registerRoute(app, '', privredniSubjektRouter)
+registerRoute(app, '/javni-poziv', javniPozivRouter)
+registerRoute(app, '/privredni-subjekt', privredniSubjektRouter)
+registerRoute(app, '', oznakaRouter)
+registerRoute(app, '', valutaRouter)
 
 app.use(ErrorMiddleware)
 

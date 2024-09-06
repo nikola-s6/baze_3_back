@@ -11,7 +11,7 @@ export type Ponuda = {
   valuta: Valuta
   zaposleni: ZaposleniPopulated
 }
-type Valuta = {
+export type Valuta = {
   id: number
   nazivValute: string
   oznakaValute: string

@@ -1,5 +1,5 @@
 import { PoolClient } from 'pg'
-import { JavniPozivFilters } from '../../models/javni-poziv.model'
+import { JavniPozivFilters, SaveJavniPoziv } from '../../models/javni-poziv.model'
 
 export function getJavniPozivAll(
   client: PoolClient,
@@ -71,5 +71,31 @@ export function getJpDetails(client: PoolClient, data: { referentniBroj: number 
          where "referentniBrojJP"=${data.referentniBroj}`
   return client.query({
     text
+  })
+}
+
+export function saveJavniPoziv(client: PoolClient, data: { jp: SaveJavniPoziv }) {
+  const { jp } = data
+  const text = `insert into view_javni_poziv("nazivPoziva", datumi, "procenjenaVrednost", "oznakaValute", "oznakaId", "valutaId", "zaposleniId", opis, "dodatniPodaci", "dozvoljeneVarijante", "adresaDostavljanja", "podlozanProduzenju", "obrazlozenjeProduzenja", "osnovnaDelatnost")
+values ($1, row($2, $3), row($4), $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15) returning "referentniBrojJP";`
+  return client.query({
+    text,
+    values: [
+      jp.nazivPoziva,
+      jp.datumi.datumIzdavanja,
+      jp.datumi.datumZatvaranja,
+      jp.procenjenaVrednost,
+      '',
+      jp.oznakaId,
+      jp.valutaId,
+      jp.zaposleniId,
+      jp.opis,
+      jp.dodatniPodaci,
+      jp.dozvoljeneVarijante,
+      jp.adresaDostavljanja,
+      jp.podlozanProduzenju,
+      jp.obrazlozenjeProduzenja,
+      jp.osnovnaDelatnost
+    ]
   })
 }

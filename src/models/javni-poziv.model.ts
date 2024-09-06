@@ -48,4 +48,15 @@ export type GetAllJavniPozivDTO = Omit<JavniPozivPopulated, 'zaposleni'> & {
 
 export type JavniPozivDetails = Omit<GetAllJavniPozivDTO, 'zaposleni'> & {
   zaposleni: ZaposleniWithPrivredniFull
-} & JavniPozivDetalji & { ponude?: Ponuda[] }
+} & JavniPozivDetalji & { ponude?: Ponuda[]; kriterijumi: Kriterijum[] }
+
+export type Kriterijum = {
+  id: number
+  nazivKriterijumaPoziva: string
+  referentniBrojJP: number
+}
+
+type CreateJavniPozivDTO = JavniPoziv & JavniPozivDetalji & { kriterijumi: string[] }
+export type SaveJavniPoziv = Omit<CreateJavniPozivDTO, 'datumi' | 'oznakaValute'> & {
+  datumi: { datumIzdavanja: string; datumZatvaranja: string }
+}

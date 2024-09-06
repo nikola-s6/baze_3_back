@@ -8,7 +8,7 @@ const router = Router()
 export default router
 
 router.get(
-  '/privredni-subjekt',
+  '',
   catchAsync(async (req: Request, res: Response) => {
     const response = await getAllPrivredniSubjekt()
     return res.status(200).json({
