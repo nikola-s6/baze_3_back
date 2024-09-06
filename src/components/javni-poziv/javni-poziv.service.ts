@@ -60,7 +60,7 @@ export async function createJavniPoziv(jp: SaveJavniPoziv) {
     const r = await saveJavniPoziv(client, { jp })
     if (!r.rowCount) throw new CustomError(500, 'Neuspesno cuvanje javnog poziva')
     const jpId = r.rows[0].referentniBrojJP
-    const res = await Promise.all(
+    await Promise.all(
       jp.kriterijumi.map(kriterijum => {
         return saveKriterijum(client, { nazivKriterijumaPoziva: kriterijum, referentniBrojJP: jpId })
       })

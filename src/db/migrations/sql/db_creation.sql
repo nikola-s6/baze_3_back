@@ -135,7 +135,8 @@ create table "JavniPozivDetalji" (
     "adresaDostavljanja" varchar(50) not null,
     "podlozanProduzenju" bool not null,
     "obrazlozenjeProduzenja" text,
-    "osnovnaDelatnost" varchar(100) not null
+    "osnovnaDelatnost" varchar(100) not null ,
+    constraint "osnovnaDelatnost_check" check ("osnovnaDelatnost" in ('Elektricna energija', 'Poljoprivreda'))
 );
 
 -- view za horizontalno particionisanje
@@ -227,26 +228,26 @@ create table "KriterijumPoziva" (
 
 create table "Ponuda" (
     "referentniBrojPonude" integer generated always as identity constraint "Ponuda_pk" primary key,
-    datum timestamptz,
-    "ukljucujeProizvodjace" bool,
-    "samostalna" bool,
-    "izjavaOIntegritetu" bool,
-    "cenaBezPDV" price_type,
-    "cenaSaPDV" price_type,
-    "valutaId" integer constraint "Ponuda_Valuta_fk" references "Valuta",
-    "referentniBrojJP" integer constraint "Ponuda_JavniPoziv_fk" references "JavniPoziv",
-    "zaposleniId" integer constraint "Ponuda_Zaposleni_fk" references "Zaposleni"
+    datum timestamptz not null,
+    "ukljucujeProizvodjace" bool not null,
+    "samostalna" bool not null,
+    "izjavaOIntegritetu" bool not null,
+    "cenaBezPDV" price_type not null,
+    "cenaSaPDV" price_type not null,
+    "valutaId" integer not null constraint "Ponuda_Valuta_fk" references "Valuta",
+    "referentniBrojJP" integer not null constraint "Ponuda_JavniPoziv_fk" references "JavniPoziv",
+    "zaposleniId" integer not null constraint "Ponuda_Zaposleni_fk" references "Zaposleni"
 );
 
 create index refBrojJP_ind on "Ponuda"("referentniBrojJP");
 
 create table "PonudaKriterijuma" (
-    "referentniBrojPonude" integer constraint "PonudaKriterijuma_Ponuda_fk" references "Ponuda",
-    "kriterijumPozivaId" integer constraint "PonudaKriterijuma_KriterijumPoziva_fk" references "KriterijumPoziva",
-    "jedinicaMereId" integer constraint "PonudaKriterijuma_JedinicaMere_fk" references "JedinicaMere",
-    "vrednost" numeric(20,2),
+    "referentniBrojPonude" integer not null constraint "PonudaKriterijuma_Ponuda_fk" references "Ponuda",
+    "kriterijumPozivaId" integer not null constraint "PonudaKriterijuma_KriterijumPoziva_fk" references "KriterijumPoziva",
+    "jedinicaMereId" integer not null constraint "PonudaKriterijuma_JedinicaMere_fk" references "JedinicaMere",
+    "vrednost" numeric(20,2) not null,
 --     denormalizacija 2nf
-    "nazivKriterijumaPoziva" varchar(100),
+    "nazivKriterijumaPoziva" varchar(100) not null,
     primary key ("referentniBrojPonude", "kriterijumPozivaId")
 );
 

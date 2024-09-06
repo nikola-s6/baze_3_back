@@ -12,6 +12,8 @@ import cors from 'cors'
 import privredniSubjektRouter from './components/privredni-subjekt/privredni-subjekt.router'
 import oznakaRouter from './components/oznaka/oznaka.router'
 import valutaRouter from './components/valuta/valuta.router'
+import jedinicaMereRouter from './components/jedinica-mere/jedinica-mere.router'
+import ponudaRouter from './components/ponuda/ponuda.router'
 
 const app = express()
 
@@ -24,8 +26,10 @@ app.use(PermissionMiddleware)
 registerRoute(app, '/auth', authRouter)
 registerRoute(app, '/javni-poziv', javniPozivRouter)
 registerRoute(app, '/privredni-subjekt', privredniSubjektRouter)
-registerRoute(app, '', oznakaRouter)
-registerRoute(app, '', valutaRouter)
+registerRoute(app, '/oznaka', oznakaRouter)
+registerRoute(app, '/valuta', valutaRouter)
+registerRoute(app, '/jedinica-mere', jedinicaMereRouter)
+registerRoute(app, '/ponuda', ponudaRouter)
 
 app.use(ErrorMiddleware)
 

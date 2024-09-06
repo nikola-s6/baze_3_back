@@ -6,7 +6,7 @@ const router = Router()
 export default router
 
 router.get(
-  '/oznaka',
+  '',
   catchAsync(async (req: Request, res: Response) => {
     const response = await getAllOznaka()
     return res.status(200).json({

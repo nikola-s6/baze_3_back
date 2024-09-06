@@ -10,9 +10,25 @@ export type Ponuda = {
   cenaSaPdv: number
   valuta: Valuta
   zaposleni: ZaposleniPopulated
+  referentniBrojJP?: number
 }
 export type Valuta = {
   id: number
   nazivValute: string
   oznakaValute: string
+}
+
+export type CreatePonudaDTO = Omit<Ponuda, 'referentniBroj' | 'valuta'> & { valutaId: number } & {
+  ponudeKriterijuma: Pick<
+    PonudaKriterijuma,
+    'jedinicaMereId' | 'kriterijumPozivaId' | 'vrednost' | 'nazivKriterijumaPoziva'
+  >[]
+}
+
+export type PonudaKriterijuma = {
+  referentniBrojPonude: number
+  kriterijumPozivaId: number
+  jedinicaMereId: number
+  vrednost: number
+  nazivKriterijumaPoziva: string
 }

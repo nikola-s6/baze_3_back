@@ -53,7 +53,7 @@ router
         zaposleniId: Number(req.zaposleni.zaposleniId),
         procenjenaVrednost: Number(req.body.procenjenaVrednost)
       }
-      if (!jp.kriterijumi?.length) throw new CustomError(404, 'Kriterijumi poziva su obavezno polje')
+      if (!jp.kriterijumi?.length) throw new CustomError(400, 'Kriterijumi poziva su obavezno polje')
       const r = await javniPozivService.createJavniPoziv(jp)
       return res.status(200).json({
         data: r
