@@ -1,6 +1,7 @@
 import { QueryResult } from 'pg'
 import { GetAllJavniPozivDTO, JavniPozivDetails } from '../../models/javni-poziv.model'
 import { Datumi } from '../../models/shared/datumi.model'
+import { ZaposleniWithPrivredniFull } from '../../models/zaposleni.model'
 
 export function parserGetAllJavniPoziv(arr: GetAllJavniPozivDTO[], queryResult: QueryResult) {
   queryResult.rows.forEach((row: getAllJavniPozivFields) => {
@@ -46,39 +47,43 @@ export function parseGetJavniPozivDetails(arr: JavniPozivDetails[], queryResult:
       podlozanProduzenju: row.podlozanProduzenju,
       obrazlozenjeProduzenja: row.obrazlozenjeProduzenja,
       osnovnaDelatnost: row.osnovnaDelatnost,
-      zaposleni: {
-        id: row.zaposleniId,
-        imeIPrezime: row.imeIPrezime,
-        email: row.email,
-        brojTelefona: row.brojTelefona,
-        datumZaposlenja: new Date(row.datumZaposlenja),
-        // @ts-ignore
-        privredniSubjekt: {
-          maticniBroj: row.maticniBroj,
-          pib: row.pib,
-          nazivPrivrednogSubjekta: row.nazivPrivrednogSubjekta,
-          stranica: row.stranica,
-          adresa: {
-            id: row.adresaId,
-            ulica: row.ulica,
-            broj: row.broj,
-            grad: {
-              id: row.gradId,
-              naziv: row.nazivGrada,
-              postanskiBroj: row.postanskiBroj,
-              drzava: {
-                id: row.drzavaId,
-                naziv: row.nazivDrzave,
-                pozivniBroj: row.pozivniBroj,
-                clanstvoEU: row.clanstvoEU
-              }
-            }
+      zaposleni: parserZaposleniFull(row)
+    }
+    arr.push(jp)
+  })
+}
+
+export function parserZaposleniFull(row: any): ZaposleniWithPrivredniFull {
+  return {
+    id: row.zaposleniId,
+    imeIPrezime: row.imeIPrezime,
+    email: row.email,
+    brojTelefona: row.brojTelefona,
+    datumZaposlenja: new Date(row.datumZaposlenja),
+    // @ts-ignore
+    privredniSubjekt: {
+      maticniBroj: row.maticniBroj,
+      pib: row.pib,
+      nazivPrivrednogSubjekta: row.nazivPrivrednogSubjekta,
+      stranica: row.stranica,
+      adresa: {
+        id: row.adresaId,
+        ulica: row.ulica,
+        broj: row.broj,
+        grad: {
+          id: row.gradId,
+          naziv: row.nazivGrada,
+          postanskiBroj: row.postanskiBroj,
+          drzava: {
+            id: row.drzavaId,
+            naziv: row.nazivDrzave,
+            pozivniBroj: row.pozivniBroj,
+            clanstvoEU: row.clanstvoEU
           }
         }
       }
     }
-    arr.push(jp)
-  })
+  }
 }
 
 type getAllJavniPozivFields = {

@@ -18,3 +18,8 @@ export function createPonudaKriterijuma(client: PoolClient, data: { ponudaKriter
     ]
   })
 }
+
+export function getPonudeKriterijuma(client: PoolClient, data: { referentniBrojPonude: number }) {
+  const text = `select * from "PonudaKriterijuma" p left join "JedinicaMere" j on j."jedinicaMereId" = p."jedinicaMereId" where "referentniBrojPonude" = ${data.referentniBrojPonude}`
+  return client.query({ text })
+}

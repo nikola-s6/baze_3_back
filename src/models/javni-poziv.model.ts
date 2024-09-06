@@ -48,7 +48,7 @@ export type GetAllJavniPozivDTO = Omit<JavniPozivPopulated, 'zaposleni'> & {
 
 export type JavniPozivDetails = Omit<GetAllJavniPozivDTO, 'zaposleni'> & {
   zaposleni: ZaposleniWithPrivredniFull
-} & JavniPozivDetalji & { ponude?: Ponuda[]; kriterijumi: Kriterijum[] }
+} & JavniPozivDetalji & { ponude?: Ponuda[]; kriterijumi?: Kriterijum[] }
 
 export type Kriterijum = {
   id: number

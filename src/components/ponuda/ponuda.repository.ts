@@ -30,3 +30,15 @@ export function createPonuda(client: PoolClient, data: { ponuda: CreatePonudaDTO
     ]
   })
 }
+
+export function getPonudaDetails(client: PoolClient, data: { referentniBrojPonude: number }) {
+  const text = `select * from "Ponuda" p
+left join "Valuta" v on v."valutaId" = p."valutaId"
+left join "Zaposleni" z on p."zaposleniId" = z."zaposleniId"
+         left join "PrivredniSubjekt" ps on ps."maticniBroj" = z."maticniBroj"
+         left join "Adresa" ad on ps."adresaId" = ad."adresaId"
+         left join "Grad" g on g."gradId" = ad."gradId"
+         left join "Drzava" dr on dr."drzavaId" = g."drzavaId"
+where p."referentniBrojPonude" = ${data.referentniBrojPonude}`
+  return client.query({ text })
+}

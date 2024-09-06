@@ -1,4 +1,4 @@
-import { ZaposleniPopulated } from './zaposleni.model'
+import { ZaposleniPopulated, ZaposleniWithPrivredniFull } from './zaposleni.model'
 
 export type Ponuda = {
   referentniBroj: number
@@ -16,6 +16,10 @@ export type Valuta = {
   id: number
   nazivValute: string
   oznakaValute: string
+}
+
+export type PonudaFull = Omit<Ponuda, 'zaposleni'> & { zaposleni: ZaposleniWithPrivredniFull } & {
+  ponudeKriterijuma?: PonudaKriterijuma[]
 }
 
 export type CreatePonudaDTO = Omit<Ponuda, 'referentniBroj' | 'valuta'> & { valutaId: number } & {
