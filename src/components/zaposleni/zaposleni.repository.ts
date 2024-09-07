@@ -6,3 +6,10 @@ export function getZaposleniByEmail(client: PoolClient, data: { email: string })
     values: [data.email]
   })
 }
+
+export function getZaposleniList(client: PoolClient) {
+  return client.query({
+    text: `select z."zaposleniId", z."imeIPrezime", z."maticniBroj", ps."nazivPrivrednogSubjekta" from "Zaposleni" z
+left join "PrivredniSubjekt" ps on ps."maticniBroj" = z."maticniBroj"`
+  })
+}

@@ -331,7 +331,8 @@ create table "OdlukaODodeliUgovora" (
     "komisijaDrugiClan" integer constraint "Odluka_drugi_clan_Zaposleni_fk" references "Zaposleni" ("zaposleniId"),
     "komisijaTreciClan" integer constraint "Odluka_treci_clan_Zaposleni_fk" references "Zaposleni" ("zaposleniId"),
     "referentniBrojJP" integer constraint "OdlukaODodeliUgovora_JavniPoziv_fk" references "JavniPoziv",
-    "referentniBrojPonude" integer constraint "OdlukaODodeliUgovora_Ponuda_fk" references "Ponuda"
+    "referentniBrojPonude" integer constraint "OdlukaODodeliUgovora_Ponuda_fk" references "Ponuda",
+    constraint "unique_referentniBrojJPOdluka" unique ("referentniBrojJP")
 );
 
 create table "TipUgovora" (

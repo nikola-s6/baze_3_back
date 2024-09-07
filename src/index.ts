@@ -14,6 +14,8 @@ import oznakaRouter from './components/oznaka/oznaka.router'
 import valutaRouter from './components/valuta/valuta.router'
 import jedinicaMereRouter from './components/jedinica-mere/jedinica-mere.router'
 import ponudaRouter from './components/ponuda/ponuda.router'
+import zaposleniRouter from './components/zaposleni/zaposleni.router'
+import odlukaRouter from './components/odluka/odluka.router'
 
 const app = express()
 
@@ -30,6 +32,8 @@ registerRoute(app, '/oznaka', oznakaRouter)
 registerRoute(app, '/valuta', valutaRouter)
 registerRoute(app, '/jedinica-mere', jedinicaMereRouter)
 registerRoute(app, '/ponuda', ponudaRouter)
+registerRoute(app, '/zaposleni', zaposleniRouter)
+registerRoute(app, '/odluka', odlukaRouter)
 
 app.use(ErrorMiddleware)
 

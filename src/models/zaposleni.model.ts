@@ -19,3 +19,10 @@ export type ZaposleniByEmailDTO = Zaposleni & PrivredniSubjekt
 export type ZaposleniWithPrivredniFull = Omit<ZaposleniPopulated, 'maticniBroj'> & {
   privredniSubjekt: PrivredniSubjektPopulated
 }
+
+export type ZaposleniBasic = {
+  zaposleniId: number
+  imeIPrezime: string
+  maticniBroj: number
+  nazivPrivrednogSubjekta: number
+}
