@@ -3,7 +3,7 @@ import catchAsync from '../../errors/catch-error.helper'
 import { getTokenZaposleniMiddleware } from '../../middlewares/token-zaposleni.middleware'
 import { ZaposleniSifra } from '../../models/zaposleni.model'
 import { CreatePonudaDTO } from '../../models/ponuda.model'
-import { createPonuda, getPonudaDetails } from './ponuda.service'
+import { createPonuda, deletePonuda, getPonudaDetails } from './ponuda.service'
 import { formatRequestDateToSQLFormat } from '../../utils/shared.helper'
 import { CustomError } from '../../errors/custom.error'
 
@@ -47,5 +47,18 @@ router
       return res.status(200).json({
         data: response
       })
+    })
+  )
+  .delete(
+    '/:referentniBroj',
+    catchAsync(async (req: Request, res: Response) => {
+      const { referentniBroj } = req.params
+      const refBr = Number(referentniBroj)
+      if (!referentniBroj || isNaN(refBr)) {
+        throw new CustomError(400, 'Pogresna vrednost referentnog broja')
+      }
+      console.log('uslo')
+      await deletePonuda(refBr)
+      return res.status(200).json({})
     })
   )

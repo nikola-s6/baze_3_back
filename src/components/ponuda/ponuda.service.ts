@@ -5,7 +5,7 @@ import { CustomError } from '../../errors/custom.error'
 import { createPonudaKriterijuma, getPonudeKriterijuma } from '../ponuda-kriterijuma/ponude-kriterijuma.repository'
 import { kriterijumParser } from '../parsers/kriterijum.parser'
 import { parseGetPonudasForJP, parsePonudaFull } from '../parsers/ponuda.parser'
-import { getPonudaDetails as gpd } from './ponuda.repository'
+import { getPonudaDetails as gpd, deletePonuda as dp } from './ponuda.repository'
 import { parse } from '../../db/db.helper'
 
 export async function createPonuda(ponuda: CreatePonudaDTO, zaposleniId: number) {
@@ -42,4 +42,8 @@ export async function getPonudaDetails(referentniBrojPonude: number) {
     pon.ponudeKriterijuma = parse<PonudaKriterijuma>(ponudeKriterijuma)
     return pon
   })
+}
+
+export async function deletePonuda(referentniBrojPonude: number) {
+  return await db.execute(dp, { referentniBrojPonude })
 }

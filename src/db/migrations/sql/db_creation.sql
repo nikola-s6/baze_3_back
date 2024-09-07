@@ -242,7 +242,7 @@ create table "Ponuda" (
 create index refBrojJP_ind on "Ponuda"("referentniBrojJP");
 
 create table "PonudaKriterijuma" (
-    "referentniBrojPonude" integer not null constraint "PonudaKriterijuma_Ponuda_fk" references "Ponuda",
+    "referentniBrojPonude" integer not null constraint "PonudaKriterijuma_Ponuda_fk" references "Ponuda" on delete cascade,
     "kriterijumPozivaId" integer not null constraint "PonudaKriterijuma_KriterijumPoziva_fk" references "KriterijumPoziva",
     "jedinicaMereId" integer not null constraint "PonudaKriterijuma_JedinicaMere_fk" references "JedinicaMere",
     "vrednost" numeric(20,2) not null,
@@ -258,7 +258,7 @@ create table "DostavljeniDokument" (
     "poverljiv" bool,
     "obrazlozenjePoverljivosti" text,
     "adresa" varchar(50),
-    "referentniBrojPonude" integer constraint "DostavljeniDokument_Ponuda_fk" references "Ponuda"
+    "referentniBrojPonude" integer constraint "DostavljeniDokument_Ponuda_fk" references "Ponuda" on delete cascade
 );
 
 -- trigeri za denormalizaciju 2nf
@@ -319,7 +319,7 @@ create table "ZapisnikPonuda" (
 );
 
 create table "PonudaZapisnikPonuda" (
-    "referentniBrojPonude" integer constraint "PonudaZapisnikPonuda_Ponuda_fk" references "Ponuda",
+    "referentniBrojPonude" integer constraint "PonudaZapisnikPonuda_Ponuda_fk" references "Ponuda" on delete cascade,
     "referentniBrojZP" integer constraint "PonudaZapisnikPonuda_ZapisnikPonuda_fk"  references "ZapisnikPonuda",
     primary key ("referentniBrojPonude")
 );

@@ -29,7 +29,6 @@ export async function getAllJavniPozivi(filteri: JavniPozivFilters) {
 }
 
 export async function getJavniPozivDetails(referentniBroj: number) {
-  console.log('usloo detalji')
   const javniPoziv = await db.transaction(async client => {
     const [jp, p, k] = await Promise.all([
       getJpDetails(client, { referentniBroj }),
@@ -51,7 +50,6 @@ export async function getJavniPozivDetails(referentniBroj: number) {
 
     return jpObject
   })
-  console.log('detaljiiii')
   return javniPoziv
 }
 

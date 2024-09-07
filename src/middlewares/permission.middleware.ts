@@ -10,6 +10,7 @@ const excludeRoutes = ['/auth/login', '/auth/register'].map(route => {
 export type BaseTokenZaposleni = { email: string; imeIPrezime: string; iat: number; exp: number }
 
 export async function PermissionMiddleware(req: Request, res: Response, next: NextFunction) {
+  console.log(req.path)
   if (excludeRoutes.includes(req.path)) return next()
 
   const token = req.cookies['jwt'] ?? req.headers['authorization']?.split(' ')?.[1]

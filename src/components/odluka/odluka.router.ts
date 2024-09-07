@@ -26,12 +26,10 @@ router
   .post(
     '',
     catchAsync(async (req: Request, res: Response) => {
-      console.log('kreiranje', req.body)
       const odlukaDto: CreateOdlukaDTO = {
         ...req.body,
         datumOdluke: formatRequestDateToSQLFormat(req.body.datumOdluke)
       }
-      console.log(odlukaDto)
       const response = await createOdluka(odlukaDto)
       res.status(200).json({
         data: response

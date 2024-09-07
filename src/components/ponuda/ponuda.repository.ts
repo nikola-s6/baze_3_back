@@ -42,3 +42,8 @@ left join "Zaposleni" z on p."zaposleniId" = z."zaposleniId"
 where p."referentniBrojPonude" = ${data.referentniBrojPonude}`
   return client.query({ text })
 }
+
+export function deletePonuda(client: PoolClient, data: { referentniBrojPonude: number }) {
+  console.log('uslo u delete')
+  return client.query({ text: `delete from "Ponuda" where "referentniBrojPonude" = ${data.referentniBrojPonude};` })
+}
