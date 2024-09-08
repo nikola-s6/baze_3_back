@@ -27,13 +27,28 @@ values ('Marko Markovic', 'marko@gmail.com', 'e3c4a8e68c23890091f9b9531ef3e0f805
 insert into "Zaposleni"("imeIPrezime", email, sifra,"brojTelefona", "datumZaposlenja", "maticniBroj")
 values ('Nikola Stojilkovic', 'nikola@gmail.com', '3eaf0ff39b53c1e893971406e247f70fcad2b1d40674d696eea726e6953089c7','069038239', '2021-02-08', 11111111);
 
+insert into "Zaposleni"("imeIPrezime", email, sifra,"brojTelefona", "datumZaposlenja", "maticniBroj")
+values ('Uros Milosevic', 'uros@gmail.com', 'b885229bb6fb7ea79d512d1cf7a8aef419c46a3eb752f83ed6ea16d3c38f4305','06923144', '2021-02-08', 22222222);
+
 -- valuta 6
 insert into "Valuta"("nazivValute", "oznakaValute")
 values ('Dinar', 'rsd');
 
+insert into "Valuta"("nazivValute", "oznakaValute")
+values ('Evro', 'e');
+
+insert into "Valuta"("nazivValute", "oznakaValute")
+values ('Dolar', '$');
+
 -- oznaka 7
 insert into "Oznaka"("nazivOznake")
 values ('Kancelarijski materijal');
+
+insert into "Oznaka"("nazivOznake")
+values ('Poljoprivredne masine');
+
+insert into "Oznaka"("nazivOznake")
+values ('Nabavka prehrambenih proizvoda');
 
 -- javni poziv 8
 insert into view_javni_poziv("nazivPoziva", datumi, "procenjenaVrednost", "oznakaValute", "oznakaId", "valutaId", "zaposleniId", opis, "dodatniPodaci", "dozvoljeneVarijante", "adresaDostavljanja", "podlozanProduzenju", "obrazlozenjeProduzenja", "osnovnaDelatnost")
@@ -46,6 +61,21 @@ values ('cena', 1);
 -- jedinica mere 10
 insert into "JedinicaMere"("nazivJediniceMere", "oznakaJediniceMere")
 values ('Dinar', 'rsd');
+
+insert into "JedinicaMere"("nazivJediniceMere", "oznakaJediniceMere")
+values ('Sat', 'h');
+
+insert into "JedinicaMere"("nazivJediniceMere", "oznakaJediniceMere")
+values ('Dan', 'd');
+
+insert into "JedinicaMere"("nazivJediniceMere", "oznakaJediniceMere")
+values ('Godina', 'god');
+
+insert into "JedinicaMere"("nazivJediniceMere", "oznakaJediniceMere")
+values ('Kilogram', 'kg');
+
+insert into "JedinicaMere"("nazivJediniceMere", "oznakaJediniceMere")
+values ('Tona', 't');
 
 -- ponuda 11
 insert into "Ponuda"(datum, "ukljucujeProizvodjace", samostalna, "izjavaOIntegritetu", "cenaBezPDV", "cenaSaPDV", "valutaId", "referentniBrojJP", "zaposleniId")
@@ -74,6 +104,12 @@ values ('2023-12-30', 1, 2, 3, 1, 1);
 -- tip ugovora 17
 insert into "TipUgovora"("nazivTipa")
 values ('Prodajni ugovor');
+
+insert into "TipUgovora"("nazivTipa")
+values ('Prenost apsolutnih prava');
+
+insert into "TipUgovora"("nazivTipa")
+values ('Ugovor o radu');
 
 insert into "Ugovor"("datumPotpisa", "tipUgovoraId", "odlukaODodeliUgovoraId", "potpisnikA", "potpisnikB")
 values ('2024-01-01', 1, 1, 11111111, 22222222);

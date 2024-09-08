@@ -46,6 +46,10 @@ export function parseGetJavniPozivDetails(arr: JavniPozivDetails[], queryResult:
       dozvoljeneVarijante: row.dozvoljeneVarijante,
       podlozanProduzenju: row.podlozanProduzenju,
       obrazlozenjeProduzenja: row.obrazlozenjeProduzenja,
+      oznaka: {
+        broj: row.oznakaId,
+        naziv: row.nazivOznake
+      },
       osnovnaDelatnost: row.osnovnaDelatnost,
       zaposleni: parserZaposleniFull(row)
     }

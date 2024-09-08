@@ -68,6 +68,7 @@ export function getJpDetails(client: PoolClient, data: { referentniBroj: number 
          left join "Adresa" ad on ps."adresaId" = ad."adresaId"
          left join "Grad" g on g."gradId" = ad."gradId"
          left join "Drzava" dr on dr."drzavaId" = g."drzavaId"
+         left join "Oznaka" oz on oz."brojOznake" = jp."oznakaId"
          where "referentniBrojJP"=${data.referentniBroj}`
   return client.query({
     text
